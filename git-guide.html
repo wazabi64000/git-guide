@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guide Git Complet</title>
-  <style>
-    :root {
-      --bg-dark: #121212;
-      --bg-section: #1e1e1e;
-      --primary: #95909c;
-      --secondary: #03dac6;
-      --text: #e0e0e0;
-      --text-muted: #b0b0b0;
-      --link: #03dac6;
-      --link-hover: #bb86fc;
-      --code-bg: #2a2a2a;
-      --focus: #ff6e40;
-    }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background:var(--bg-dark); color:var(--text); }
-    header { background: var(--bg-section); padding:1rem 2rem; position: sticky; top:0; z-index:1000; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
-    nav ul { list-style:none; display:flex; flex-wrap:wrap; gap:1rem; padding:0; margin:0.5rem 0 0; }
-    nav a { color: var(--link); text-decoration:none; padding:0.4rem 0.8rem; border-radius:4px; transition: background 0.3s,color 0.3s;}
-    nav a:hover, nav a:focus, nav a[aria-current="page"] { background: var(--primary); color:var(--bg-dark); outline:3px solid var(--focus);}
-    main { max-width:1000px; margin:1.5rem auto; padding:0 1.5rem; }
-    section { margin-bottom:2.5rem; padding:1rem; background:var(--bg-section); border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.5);}
-    h1,h2,h3 { color: var(--primary); }
-    p, li { color: var(--text); }
-    ul li { margin-bottom:0.5rem; }
-    pre { background: var(--code-bg); padding:1rem; overflow-x:auto; border-radius:8px; font-family:'Courier New', monospace; font-size:0.95rem; color: var(--secondary); }
-    a { color: var(--link); text-decoration: underline; }
-    a:hover { color: var(--link-hover); }
-    footer { text-align:center; font-size:0.9rem; background:var(--bg-section); color:var(--text-muted); padding:1rem; margin-top:2rem; }
-    @media (max-width:768px){ nav ul { flex-direction:column;} section {padding:0.8rem;} }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide Git Complet Avancé</title>
+<style>
+:root {
+  --bg-dark: #121212;
+  --bg-section: #1e1e1e;
+  --primary: #bb86fc;
+  --secondary: #03dac6;
+  --text: #e0e0e0;
+  --text-muted: #b0b0b0;
+  --link: #03dac6;
+  --link-hover: #bb86fc;
+  --code-bg: #2a2a2a;
+  --focus: #ff6e40;
+}
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background:var(--bg-dark); color:var(--text);}
+header { background: var(--bg-section); padding:1rem 2rem; position: sticky; top:0; z-index:1000; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
+nav ul { list-style:none; display:flex; flex-wrap:wrap; gap:1rem; padding:0; margin:0.5rem 0 0; }
+nav a { color: var(--link); text-decoration:none; padding:0.4rem 0.8rem; border-radius:4px; transition: background 0.3s,color 0.3s;}
+nav a:hover, nav a:focus, nav a[aria-current="page"] { background: var(--primary); color:var(--bg-dark); outline:3px solid var(--focus);}
+main { max-width:1000px; margin:1.5rem auto; padding:0 1.5rem; }
+section { margin-bottom:2.5rem; padding:1rem; background:var(--bg-section); border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+h1,h2,h3 { color: var(--primary); }
+p, li { color: var(--text); }
+ul li { margin-bottom:0.5rem; }
+pre { background: var(--code-bg); padding:1rem; overflow-x:auto; border-radius:8px; font-family:'Courier New', monospace; font-size:0.95rem; color: var(--secondary);}
+a { color: var(--link); text-decoration: underline;}
+a:hover { color: var(--link-hover);}
+footer { text-align:center; font-size:0.9rem; background:var(--bg-section); color:var(--text-muted); padding:1rem; margin-top:2rem;}
+@media (max-width:768px){ nav ul { flex-direction:column;} section {padding:0.8rem;} }
+</style>
 </head>
 <body>
 
 <header>
-  <h1>Guide Git Complet</h1>
-  <p>Apprenez à travailler avec Git en solo ou en équipe, avec des commandes expliquées et des exemples pratiques.</p>
+  <h1>Guide Git Complet Avancé</h1>
+  <p>Travailler en solo ou en équipe, gérer les erreurs, récupérer d’anciennes versions et appliquer les bonnes pratiques.</p>
   <nav aria-label="Navigation interne">
     <ul>
       <li><a href="#introduction" aria-current="page">Introduction</a></li>
-      <li><a href="#git-solo">Travailler en solo</a></li>
-      <li><a href="#git-groupe">Travailler en groupe</a></li>
+      <li><a href="#preparation">Préparation avant init</a></li>
+      <li><a href="#solo">Travailler en solo</a></li>
+      <li><a href="#groupe">Travailler en groupe</a></li>
+      <li><a href="#erreurs">Erreurs fréquentes</a></li>
+      <li><a href="#anciennes-versions">Récupérer anciennes versions</a></li>
+      <li><a href="#bonnes-pratiques">Bonnes pratiques</a></li>
       <li><a href="#ressources">Ressources</a></li>
     </ul>
   </nav>
@@ -52,89 +56,119 @@
 <main>
 
 <section id="introduction">
-  <h2>Introduction</h2>
-  <p>
-    Git est un système de gestion de versions distribué qui permet de suivre l’historique des fichiers, collaborer avec d’autres développeurs et gérer efficacement les projets. 
-    Que vous travailliez seul ou en équipe, Git est indispensable pour un workflow professionnel.
-  </p>
+<h2>Introduction</h2>
+<p>Git est un système de gestion de versions distribué puissant, permettant de suivre les modifications de fichiers, collaborer efficacement et revenir sur des versions antérieures. Ce guide couvre les workflows solo et collaboratifs, les erreurs courantes, et les bonnes pratiques pour démarrer un projet proprement.</p>
 </section>
 
-<section id="git-solo">
-  <h2>Travailler en solo</h2>
-  
-  <h3>Initialiser un dépôt</h3>
-  <pre><code># Créer un nouveau dépôt local
-git init
-
-# Ajouter tous les fichiers
-git add .
-
-# Valider les changements
-git commit -m "Premier commit"</code></pre>
-
-  <h3>Voir l’historique</h3>
-  <pre><code>git log          # Affiche tous les commits
-git log --oneline # Résumé compact</code></pre>
-
-  <h3>Créer des branches</h3>
-  <pre><code>git branch feature1   # Crée une nouvelle branche
-git checkout feature1  # Basculer sur la branche
-git checkout main      # Revenir sur main</code></pre>
-
-  <h3>Fusionner une branche</h3>
-  <pre><code>git checkout main
-git merge feature1      # Fusionne feature1 dans main</code></pre>
-
-  <h3>Travailler avec un dépôt distant</h3>
-  <pre><code>git remote add origin https://github.com/utilisateur/projet.git
-git push -u origin main  # Pousser la branche principale</code></pre>
+<section id="preparation">
+<h2>Préparation avant d’initier un projet</h2>
+<ul>
+<li><strong>Créer un dossier local dédié :</strong> Toujours créer un dossier propre pour votre projet avant d’exécuter <code>git init</code>.</li>
+<li><strong>Fichier .gitignore :</strong> Préparer un <code>.gitignore</code> pour exclure fichiers temporaires, logs, secrets, dépendances générées.</li>
+<li><strong>Initialiser le dépôt :</strong>
+<pre><code># Dans le dossier du projet
+git init   # Crée un dépôt Git local</code></pre>
+</li>
+<li><strong>Premier commit :</strong>
+<pre><code>git add .
+git commit -m "Initial commit"   # Valider tous les fichiers de départ</code></pre>
+</li>
+</ul>
 </section>
 
-<section id="git-groupe">
-  <h2>Travailler en groupe</h2>
+<section id="solo">
+<h2>Travailler en solo</h2>
 
-  <h3>Cloner un projet</h3>
-  <pre><code>git clone https://github.com/organisation/projet.git
+<h3>Créer des branches pour les fonctionnalités</h3>
+<pre><code>git branch feature1      # Crée une branche
+git checkout feature1     # Se positionner dessus
+git commit -m "Modifications sur feature1"</code></pre>
+
+<h3>Fusionner une branche</h3>
+<pre><code>git checkout main
+git merge feature1   # Fusionner feature1 dans main
+# Résolution des conflits si nécessaire</code></pre>
+
+<h3>Déployer sur un dépôt distant</h3>
+<pre><code>git remote add origin https://github.com/user/projet.git
+git push -u origin main  # Premier push de la branche principale</code></pre>
+
+<h3>Historique et logs</h3>
+<pre><code>git log            # Historique complet
+git log --oneline   # Résumé compact
+git status         # Voir modifications en cours</code></pre>
+</section>
+
+<section id="groupe">
+<h2>Travailler en groupe</h2>
+
+<h3>Cloner un dépôt</h3>
+<pre><code>git clone https://github.com/org/projet.git
 cd projet</code></pre>
 
-  <h3>Créer une branche pour une fonctionnalité</h3>
-  <pre><code>git checkout -b feature-nouvelle-fonctionnalite</code></pre>
+<h3>Mettre à jour sa branche</h3>
+<pre><code>git checkout main
+git pull origin main   # Récupère les dernières modifications
+git checkout feature1
+git merge main         # Intègre main dans votre branche</code></pre>
 
-  <h3>Ajouter et valider les changements</h3>
-  <pre><code>git add fichier1 fichier2
-git commit -m "Description du changement"</code></pre>
+<h3>Pousser et Pull Request</h3>
+<pre><code>git push origin feature1
+# Créer une Pull Request sur GitHub/GitLab</code></pre>
+</section>
 
-  <h3>Mettre à jour sa branche depuis main</h3>
-  <pre><code>git checkout main
-git pull origin main      # Récupérer les dernières modifications
-git checkout feature-nouvelle-fonctionnalite
-git merge main            # Fusionner main dans votre branche</code></pre>
+<section id="erreurs">
+<h2>Erreurs fréquentes et solutions</h2>
+<ul>
+<li><strong>Erreur : "detached HEAD"</strong> – Vous êtes sur un commit spécifique et pas sur une branche. <code>git checkout main</code> pour revenir sur la branche.</li>
+<li><strong>Erreur : "merge conflicts"</strong> – Conflits lors d’un merge. Éditer les fichiers conflictuels, <code>git add</code> puis <code>git commit</code>.</li>
+<li><strong>Erreur : "untracked files"</strong> – Fichiers non suivis. Ajouter avec <code>git add fichier</code>.</li>
+<li><strong>Erreur : push refusé</strong> – Votre branche locale est en retard. Faire <code>git pull --rebase</code> puis <code>git push</code>.</li>
+</ul>
+</section>
 
-  <h3>Résoudre les conflits</h3>
-  <p>Si Git détecte des conflits lors d’un merge, il faut éditer les fichiers concernés, choisir les modifications correctes puis valider :</p>
-  <pre><code># Après avoir corrigé les conflits
-git add fichier-modifié
-git commit -m "Résolution des conflits"</code></pre>
+<section id="anciennes-versions">
+<h2>Récupérer d’anciennes versions</h2>
 
-  <h3>Pousser ses changements et créer une Pull Request</h3>
-  <pre><code>git push origin feature-nouvelle-fonctionnalite
-# Puis créer la Pull Request sur GitHub / GitLab / Bitbucket</code></pre>
+<h3>Revenir à un commit précédent sans perdre l’historique</h3>
+<pre><code>git checkout <commit_hash>  # Voir ancien commit
+git checkout main             # Revenir sur la branche principale</code></pre>
+
+<h3>Revert : annuler un commit déjà poussé</h3>
+<pre><code>git revert <commit_hash>  # Crée un nouveau commit annulant les changements</code></pre>
+
+<h3>Reset : annuler commits locaux</h3>
+<pre><code>git reset --soft HEAD~1   # Annule le dernier commit mais garde les changements
+git reset --hard HEAD~1   # Annule le dernier commit et supprime les modifications</code></pre>
+</section>
+
+<section id="bonnes-pratiques">
+<h2>Bonnes pratiques</h2>
+<ul>
+<li>Commits fréquents et messages clairs (<code>git commit -m "fonction X ajoutée"</code>).</li>
+<li>Brancher pour chaque fonctionnalité ou bug.</li>
+<li>Ne jamais travailler directement sur <code>main</code> en équipe.</li>
+<li>Tenir à jour le <code>.gitignore</code>.</li>
+<li>Pull régulièrement pour éviter les conflits.</li>
+<li>Utiliser Pull Request pour valider les changements en groupe.</li>
+<li>Tester les merges localement avant push.</li>
+</ul>
 </section>
 
 <section id="ressources">
-  <h2>Ressources et liens utiles</h2>
-  <ul>
-    <li><a href="https://git-scm.com/doc" target="_blank">Documentation officielle Git</a></li>
-    <li><a href="https://learngitbranching.js.org/" target="_blank">Learn Git Branching – interactif</a></li>
-    <li><a href="https://www.atlassian.com/fr/git/tutorials" target="_blank">Atlassian Git Tutorials</a></li>
-    <li><a href="https://www.git-tower.com/learn/git/ebook/fr/command-line/introduction" target="_blank">Guide Git Tower</a></li>
-  </ul>
+<h2>Ressources</h2>
+<ul>
+<li><a href="https://git-scm.com/doc" target="_blank">Documentation officielle Git</a></li>
+<li><a href="https://learngitbranching.js.org/" target="_blank">Learn Git Branching – interactif</a></li>
+<li><a href="https://www.atlassian.com/fr/git/tutorials" target="_blank">Atlassian Git Tutorials</a></li>
+<li><a href="https://www.git-tower.com/learn/git/ebook/fr/command-line/introduction" target="_blank">Guide Git Tower</a></li>
+</ul>
 </section>
 
 </main>
 
 <footer>
-  <p>&copy; 2025 Guide Git Complet | Thème sombre | Tous droits réservés</p>
+<p>&copy; 2025 Guide Git Complet Avancé | Aucun droits réservés</p>
 </footer>
 
 </body>
